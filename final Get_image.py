@@ -19,3 +19,14 @@ results = soup.findAll("img")
 for r in results:
     img_urls.append(r["src"])
 
+image_type = "Action"
+
+for img in img_urls:
+  raw_img = urllib2.urlopen(img).read()
+  #add the directory for your image here 
+  DIR="/home/shuchita/googlePics/"
+  cntr = len([i for i in os.listdir(DIR) if image_type in i]) + 1
+  print cntr
+  f = open(DIR + image_type + "_"+ str(cntr)+".jpg", 'wb')
+  f.write(raw_img)
+  f.close()
